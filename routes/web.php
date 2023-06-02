@@ -15,3 +15,8 @@ use App\Http\Controllers\ContentController;
 */
 
 Route::get('/', [ContentController::class, 'index']);
+Route::get('/content', [ContentController::class, 'index']);
+Route::get('/content/create', [ContentController::class, 'create'])->name('create');
+Route::get('/content/{id}/edit', [ContentController::class, 'edit']);
+
+Route::post('/content', [ContentController::class, 'store']);
