@@ -20,11 +20,13 @@ class ContentController extends Controller
 
     public function store(ContentRequest $request ) {
         $content = new Content;
-        $content->topic = $request->topic;
-        $content->description = $request->description;
-        $content->tags = $request->tags;
-        $content->user_id = 1;
-        $content->save();
+        $this->save($content, $request);
+
+        // $content->topic = $request->topic;
+        // $content->description = $request->description;
+        // $content->tags = $request->tags;
+        // $content->user_id = 1;
+        // $content->save();
 
         return redirect('/content');
     }
@@ -32,6 +34,36 @@ class ContentController extends Controller
     public function edit($id) {
         $content = Content::findOrFail($id);
         return view('content.form', compact('content'));
+    }
+
+    public function update(ContentRequest $request ,$id) {
+
+
+        $content = Content::findOrFail($id);
+        // dd($content);
+
+        $this->save($content, $request);
+
+        // $content = new Content;
+        // $content->topic = $request->topic;
+        // $content->description = $request->description;
+        // $content->tags = $request->tags;
+        // $content->user_id = 1;
+        // $content->save();
+
+        return redirect('/content');        
+    }
+
+    public function destroy($id) {
+        Content::destroy($id);
+    }
+
+    private function save($content, $request) {
+        $content->topic = $request->topic;
+        $content->description = $request->description;
+        $content->tags = $request->tags;
+        $content->user_id = 1;
+        $content->save(); 
     }
 
 }

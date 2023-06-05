@@ -20,3 +20,5 @@ Route::get('/content/create', [ContentController::class, 'create'])->name('creat
 Route::get('/content/{id}/edit', [ContentController::class, 'edit']);
 
 Route::post('/content', [ContentController::class, 'store']);
+Route::put('/content/{id}', [ContentController::class, 'update']);
+Route::delete('/content/{id}', [ContentController::class, 'destroy']);

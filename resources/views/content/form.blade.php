@@ -6,7 +6,11 @@
 
     <h1>Create content</h1>
 
-    <form action="{{ url('content')}}" method="POST">
+    <form action="{{ empty($content->id) ?  url('/content') : url('/content/' . $content->id) }}" method="post">
+        @if(!empty($content->id))            
+            @method('put')
+        @endif
+
         @csrf
 
         <div class="mb-3">
